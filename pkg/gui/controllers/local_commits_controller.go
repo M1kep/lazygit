@@ -1077,6 +1077,7 @@ func (self *LocalCommitsController) handleOpenLogMenu() error {
 				Label:     self.c.Tr.ShowGitGraph,
 				OpensMenu: true,
 				OnPress: func() error {
+					currentValue := self.c.GetAppState().GitLogShowGraph
 					onPress := func(value string) func() error {
 						return func() error {
 							self.c.GetAppState().GitLogShowGraph = value
@@ -1093,14 +1094,17 @@ func (self *LocalCommitsController) handleOpenLogMenu() error {
 							{
 								Label:   "always",
 								OnPress: onPress("always"),
+								Widget:  types.MakeMenuRadioButton(currentValue == "always"),
 							},
 							{
 								Label:   "never",
 								OnPress: onPress("never"),
+								Widget:  types.MakeMenuRadioButton(currentValue == "never"),
 							},
 							{
 								Label:   "when maximised",
 								OnPress: onPress("when-maximised"),
+								Widget:  types.MakeMenuRadioButton(currentValue == "when-maximised"),
 							},
 						},
 					})
@@ -1110,6 +1114,7 @@ func (self *LocalCommitsController) handleOpenLogMenu() error {
 				Label:     self.c.Tr.SortCommits,
 				OpensMenu: true,
 				OnPress: func() error {
+					currentValue := self.c.GetAppState().GitLogOrder
 					onPress := func(value string) func() error {
 						return func() error {
 							self.c.GetAppState().GitLogOrder = value
@@ -1131,14 +1136,17 @@ func (self *LocalCommitsController) handleOpenLogMenu() error {
 							{
 								Label:   "topological (topo-order)",
 								OnPress: onPress("topo-order"),
+								Widget:  types.MakeMenuRadioButton(currentValue == "topo-order"),
 							},
 							{
 								Label:   "date-order",
 								OnPress: onPress("date-order"),
+								Widget:  types.MakeMenuRadioButton(currentValue == "date-order"),
 							},
 							{
 								Label:   "author-date-order",
 								OnPress: onPress("author-date-order"),
+								Widget:  types.MakeMenuRadioButton(currentValue == "author-date-order"),
 							},
 						},
 					})
